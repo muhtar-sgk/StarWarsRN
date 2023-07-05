@@ -33,12 +33,23 @@ const Styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
+	containerHeader: {
+		backgroundColor: Colors.primaryColor,
+		paddingVertical: 16,
+		paddingHorizontal: 16
+	},
+	/* Text styles */
 	textHeadline1: {
 		fontSize: 24,
 		fontFamily: Fonts.POPPINS_BOLD,
 		color: 'black'
 	},
 	textHeadline2: {
+		fontSize: 20,
+		fontFamily: Fonts.POPPINS_BOLD,
+		color: 'white'
+	},
+	textHeadline3: {
 		fontSize: 16,
 		fontFamily: Fonts.POPPINS_BOLD,
 		color: 'black'
@@ -56,9 +67,14 @@ const Styles = StyleSheet.create({
 	textSmall: {
 		fontSize: 12
 	},
+	/* Image styles */
 	imageLarge: {
 		width: 240,
 		height: 240
+	},
+	imageSmall: {
+		width: 40,
+		height: 40
 	}
 })
 

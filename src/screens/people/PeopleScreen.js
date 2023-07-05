@@ -2,7 +2,7 @@ import { View, Text, FlatList } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPeople } from '../../redux/PeopleReducer'
-import { Gap, PeopleItem } from '../../components'
+import { Gap, Header, PeopleItem } from '../../components'
 import { Styles } from '../../themes'
 
 const PeopleScreen = () => {
@@ -20,6 +20,7 @@ const PeopleScreen = () => {
 
 	return (
 		<View style={Styles.containerCommon}>
+			<Header />
 			<Gap height={16}/>
 			<FlatList
 				contentContainerStyle={{ flexGrow: 1 }}
@@ -40,7 +41,7 @@ const PeopleScreen = () => {
 				// 	<RefreshControl refreshing={isLoading} onRefresh={fetchData} />
 				// }
 			/>
-			<Gap height={8}/>
+			{/* <Gap height={8}/> */}
 		</View>
 	)
 }

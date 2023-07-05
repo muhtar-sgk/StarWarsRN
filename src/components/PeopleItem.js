@@ -5,7 +5,7 @@ import { Styles } from '../themes'
 const PeopleItem = ({name, hairColor, skinColor}) => {
 	return (
 		<View style={Styles.containerItem}>
-			<Text style={Styles.textHeadline2}>{name}</Text>
+			<Text style={Styles.textHeadline3}>{name}</Text>
 			<View style={Styles.containerRow}>
 				<Text style={Styles.textDefaultRegular}>Hair Color</Text>
 				<Text style={Styles.textDefaultSemiBold}>{hairColor}</Text>
