@@ -1,11 +1,11 @@
 import { View, Text, FlatList } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPeople } from '../../redux/PeopleReducer'
+import { getPeople } from '../../redux/peopleSlice'
 import { Gap, Header, ModalLoading, PeopleItem } from '../../components'
 import { Styles } from '../../themes'
 
-const PeopleScreen = () => {
+const PeopleScreen = ({navigation}) => {
 	const dispatch = useDispatch()
 	const people = useSelector(state => state.peopleReducer?.data?.results)
 	const isLoading = useSelector(state => state.peopleReducer.isLoading)
@@ -23,16 +23,20 @@ const PeopleScreen = () => {
 			<ModalLoading
         visible={isLoading}
       />
-			<Header />
+			<Header title='People'/>
 			<Gap height={16}/>
 			<FlatList
 				contentContainerStyle={{ flexGrow: 1 }}
 				data={people}
-				renderItem={({ item }) => (
+				renderItem={({ item, index }) => (
 					<PeopleItem
 						name={item.name}
 						hairColor={item.hair_color}
 						skinColor={item.skin_color}
+						onPressDetail={() => navigation.navigate(
+							'DetailScreen',
+							{url: item.url}
+						)}
 					/>
 				)}
 				keyExtractor={item => item.url}

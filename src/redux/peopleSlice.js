@@ -16,11 +16,9 @@ export const getPeople = () => {
       timeout: 60000
     })
     .then((result) => {
-      console.log('getpeople-success', result)
       dispatch(peopleSuccess(result.data))
     })
     .catch(err => {
-      console.log('getpeople-error', err)
       if (err.response) {
         const status = err.response.status
         if(status === 500) {
@@ -40,8 +38,8 @@ export const getPeople = () => {
   }
 }
 
-export const peopleReducer = createSlice({
-  name: 'peopleReducer',
+export const peopleSlice = createSlice({
+  name: 'people',
   initialState,
   reducers: {
     peopleStart: state => {
@@ -58,5 +56,5 @@ export const peopleReducer = createSlice({
   }
 })
 
-export const {peopleStart, peopleSuccess, peopleFailure} = peopleReducer.actions
-export default peopleReducer.reducer
+export const {peopleStart, peopleSuccess, peopleFailure} = peopleSlice.actions
+export default peopleSlice.reducer

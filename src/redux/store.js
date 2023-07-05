@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
-import PeopleReducer from './PeopleReducer'
+import peopleReducer from './peopleSlice'
+import detailPeopleReducer from './detailPeopleSlice'
 
 export const store = configureStore({
   reducer: {
-		peopleReducer: PeopleReducer
+		peopleReducer: peopleReducer,
+		detailPeopleReducer: detailPeopleReducer
 	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		serializableCheck: false

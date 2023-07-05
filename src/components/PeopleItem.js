@@ -1,20 +1,22 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Styles } from '../themes'
 
-const PeopleItem = ({name, hairColor, skinColor}) => {
+const PeopleItem = ({name, hairColor, skinColor, onPressDetail}) => {
 	return (
-		<View style={Styles.containerItem}>
+		<TouchableOpacity 
+			onPress={onPressDetail}
+			style={Styles.containerItem}>
 			<Text style={Styles.textHeadline3}>{name}</Text>
 			<View style={Styles.containerRow}>
 				<Text style={Styles.textDefaultRegular}>Hair Color</Text>
-				<Text style={Styles.textDefaultSemiBold}>{hairColor}</Text>
+				<Text style={Styles.textDefaultSemiBold}>{hairColor === 'n/a' ? '-' : hairColor}</Text>
 			</View>
 			<View style={Styles.containerRow}>
 				<Text style={Styles.textDefaultRegular}>Skin Color</Text>
 				<Text style={Styles.textDefaultSemiBold}>{skinColor}</Text>
 			</View>
-		</View>
+		</TouchableOpacity>
 	)
 }
 
