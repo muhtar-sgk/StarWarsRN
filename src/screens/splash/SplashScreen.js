@@ -28,7 +28,7 @@ const Splash = ({ navigation }) => {
 				style={Styles.imageLarge}
 			/>
 			<Gap height={16}/>
-			<Text style={Styles.textLargeBold}>SWAPI</Text>
+			<Text style={Styles.textHeadline1}>SWAPI</Text>
 		</Animated.View>
 	)
 }

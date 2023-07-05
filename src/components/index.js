@@ -1,5 +1,7 @@
 import Gap from './Gap'
+import PeopleItem from './PeopleItem'
 
 export {
-	Gap
+	Gap,
+	PeopleItem
 }
