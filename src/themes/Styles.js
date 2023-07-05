@@ -38,6 +38,10 @@ const Styles = StyleSheet.create({
 		paddingVertical: 16,
 		paddingHorizontal: 16
 	},
+	containerLoading: {
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
 	/* Text styles */
 	textHeadline1: {
 		fontSize: 24,

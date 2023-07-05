@@ -2,13 +2,13 @@ import { View, Text, FlatList } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPeople } from '../../redux/PeopleReducer'
-import { Gap, Header, PeopleItem } from '../../components'
+import { Gap, Header, ModalLoading, PeopleItem } from '../../components'
 import { Styles } from '../../themes'
 
 const PeopleScreen = () => {
 	const dispatch = useDispatch()
 	const people = useSelector(state => state.peopleReducer?.data?.results)
-	console.log('people', people)
+	const isLoading = useSelector(state => state.peopleReducer.isLoading)
 
 	const fetchData = async () => {
 		dispatch(getPeople())
@@ -20,6 +20,9 @@ const PeopleScreen = () => {
 
 	return (
 		<View style={Styles.containerCommon}>
+			<ModalLoading
+        visible={isLoading}
+      />
 			<Header />
 			<Gap height={16}/>
 			<FlatList
