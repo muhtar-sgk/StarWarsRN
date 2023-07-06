@@ -5,7 +5,7 @@ import detailPeopleReducer from './detailPeopleSlice'
 export const store = configureStore({
   reducer: {
 		peopleReducer: peopleReducer,
-		detailPeopleReducer: detailPeopleReducer
+		detailPeopleReducer: detailPeopleReducer,
 	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		serializableCheck: false

@@ -87,6 +87,10 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column'
   },
+	containerSafeAreaView: {
+    flex: 0,
+    backgroundColor: Colors.primaryColor
+  },
 	/* Text styles */
 	textHeadline1: {
 		fontSize: 24,

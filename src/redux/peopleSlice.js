@@ -1,60 +1,44 @@
-import {createSlice} from '@reduxjs/toolkit'
-import axios from 'axios'
-import Networks from '../consts'
-import { showMessage } from '../util/ShowMessage'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const initialState = {
-  data: {},
-  isLoading: false,
-  error: ''
-}
-
-export const getPeople = () => {
-  return dispatch => {
-    dispatch(peopleStart())
-    axios.get(Networks.BASE_URL + 'people', {
-      timeout: 60000
-    })
-    .then((result) => {
-      dispatch(peopleSuccess(result.data))
-    })
-    .catch(err => {
-      if (err.response) {
-        const status = err.response.status
-        if(status === 500) {
-          showMessage('Internal Server Error')
-        } else if(status === 401) {
-          showMessage('Error Autentikasi')
-        } else {
-          showMessage('Mohon periksa kembali koneksi internet anda')
-        }
-      } else if (err.message) {
-        showMessage('Mohon periksa kembali koneksi internet Anda')
-      } else {
-        showMessage('Mohon periksa kembali koneksi internet Anda')
-      }
-      dispatch(peopleFailure(err))
-    })
+export const fetchPeople = createAsyncThunk(
+  'people/fetchPeople',
+  async (url) => {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
   }
-}
+)
 
-export const peopleSlice = createSlice({
+const peopleSlice = createSlice({
   name: 'people',
-  initialState,
-  reducers: {
-    peopleStart: state => {
-      state.isLoading = true
-    },
-    peopleSuccess: (state, action) => {
-      state.isLoading = false
-      state.data = action.payload
-    },
-    peopleFailure: (state, action) => {
-      state.isLoading = false
-      state.error = action.payload
-    }
-  }
+  initialState: {
+    data: [],
+    nextPage: '',
+    loading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPeople.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchPeople.fulfilled, (state, action) => {
+        state.loading = false
+        state.data.push(...action.payload.results)
+        state.nextPage = action.payload.next
+      })
+      .addCase(fetchPeople.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message
+      })
+  },
 })
 
-export const {peopleStart, peopleSuccess, peopleFailure} = peopleSlice.actions
+export const selectPeople = (state) => state.peopleReducer.data
+export const selectNextPage = (state) => state.peopleReducer.nextPage
+export const selectLoading = (state) => state.peopleReducer.loading
+export const selectError = (state) => state.peopleReducer.error
+
 export default peopleSlice.reducer
