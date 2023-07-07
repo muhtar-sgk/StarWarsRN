@@ -2,7 +2,7 @@ import { View, Text, FlatList, ActivityIndicator, SafeAreaView } from 'react-nat
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Gap, Header, PeopleItem } from '../../components'
-import { Styles } from '../../themes'
+import { Colors, Styles } from '../../themes'
 import { fetchPeople, selectPeople, selectNextPage, selectLoading, selectError } from '../../redux/peopleSlice';
 
 const PeopleScreen = ({ navigation }) => {
@@ -56,7 +56,7 @@ const PeopleScreen = ({ navigation }) => {
 					ListFooterComponent={renderFooter}
 					onEndReached={loadMoreCharacters}
 					onEndReachedThreshold={0.5}
-					ListEmptyComponent={() => <Text style={Styles.textDefaultRegularWhite}>People data not available</Text>}
+					ListEmptyComponent={() => <Text style={{color: loading ? Colors.bgColor : 'white'}}>People data not available</Text>}
 				/>
 			</View>
 		</>
