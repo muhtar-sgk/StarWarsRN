@@ -2,11 +2,11 @@ import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Styles } from '../../themes'
-import { CardTitleBlack, CardTitleWhite, Gap, Header, ModalLoading } from '../../components'
+import { CardTitleBlack, CardTitleWhite, Gap, HeaderDetail, ModalLoading } from '../../components'
 import DataRow from '../../components/DataRow'
 import { fetchDetailPeople } from '../../redux/detailPeopleSlice'
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ navigation, route }) => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -63,7 +63,9 @@ const DetailScreen = ({ route }) => {
 				<ModalLoading
 					visible={loading}
 				/>
-				<Header title={detailPeople?.name} />
+				<HeaderDetail 
+					onPressBack={() => navigation.goBack()}
+					title={detailPeople?.name} />
 				<ScrollView>
 					<Gap height={16} />
 					<View style={Styles.containerItem}>

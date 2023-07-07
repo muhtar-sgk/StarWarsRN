@@ -78,10 +78,19 @@ const Styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
+	containerRowHeader: {
+		flexDirection: 'row'
+	},
 	containerHeader: {
 		backgroundColor: Colors.primaryColor,
 		paddingVertical: 16,
 		paddingHorizontal: 16,
+	},
+	containerHeaderDetail: {
+		backgroundColor: Colors.primaryColor,
+		paddingVertical: 16,
+		paddingRight: 16,
+		paddingLeft: 4
 	},
 	containerLoading: {
     alignItems: 'center',
